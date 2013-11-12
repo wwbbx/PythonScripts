@@ -37,6 +37,29 @@ def CopyPackage(version):
 	if os.path.isfile(destination):
 		print 'Successfully copied {0}!'.format(destination)
 
+def MoveOldPackage():
+	# move old TMEPlatformAgent package from \\fas3000 to
+	# its TMEPlatformAgent directory.
+
+	# get all files starts with "TMEPlatformAgent"
+	# exclude the one we just copied
+	# move all others into its "TMEPlatformAgent" sub directory
+
+	softwarePath = r'\\fas3000-b.chn.agilent.com\v6\WCSS_Eng_STE\TME_EXTRACTOR\SOFTWARES'
+	tmePlatformAgentSetupFiles = sorted([f for f in os.listdir(softwarePath) if 'TMEPlatformAgent_' in f])
+
+	if len(tmePlatformAgentSetupFiles) > 1:
+		# keep the latest one not archived.
+		del tmePlatformAgentSetupFiles[-1]
+		print '{0} will be archived!'.format(tmePlatformAgentSetupFiles)
+		# move all old packages
+		archiveFolder = os.path.join(softwarePath, r'TMEPlatformAgent')
+		for f in tmePlatformAgentSetupFiles:
+			destinationFile = os.path.join(archiveFolder, f)
+			os.rename(os.path.join(softwarePath, f), destinationFile)
+			print 'Archived {0}.'.format(destinationFile)
+
 version = GetVersion()
 BuildSetupPackage()
 CopyPackage(version)
+MoveOldPackage()
