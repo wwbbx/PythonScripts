@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>c62a0592-208a-47eb-9e47-662655a2d0cf</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>ChangeCrsRegistry.py</StartupFile>
+    <SearchPath>\Program Files (x86)\IronPython 2.7</SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <InterpreterId>{80659ab7-4d53-4e0c-8588-a766116cbd46}</InterpreterId>
+    <LaunchProvider>IronPython (.NET) launcher</LaunchProvider>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <OutputPath>.</OutputPath>
+    <Name>PythonScripts</Name>
+    <RootNamespace>PythonScripts</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{80659ab7-4d53-4e0c-8588-a766116cbd46}\2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuildTmePackage.py" />
+    <Compile Include="ChangeCrsRegistry.py" />
+    <Compile Include="Registry.py" />
+    <Compile Include="test.py" />
+    <Compile Include="test\TestRegistry.py" />
+    <Compile Include="test\TestWindowsService.py" />
+    <Compile Include="TmeExtractorSmokeTest.py" />
+    <Compile Include="UseBBNRegistrySetting.py" />
+    <Compile Include="UseRoseRegistrySetting.py" />
+    <Compile Include="UseSgpRegistrySetting.py" />
+    <Compile Include="WindowsService.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MSTools\psexec.exe" />
+    <Content Include="MSTools\pskill.exe" />
+    <Content Include="MSTools\pslist.exe" />
+    <Content Include="MSTools\psservice.exe" />
+    <Content Include="MSTools\Pstools.chm" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MSTools\" />
+    <Folder Include="test\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
